@@ -1,4 +1,6 @@
 myenv/
 index/
 streamlit_env/
+dat/votes_with_categories.csv
+
 
