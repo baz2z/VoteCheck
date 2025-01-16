@@ -84,21 +84,8 @@ st.write("\n" * 3)
 # New section for the second plot
 st.markdown("<h1 id='diskutierte-themen-pro-monat'>Diskutierte Themen pro Monat</h1>", unsafe_allow_html=True)
 
-# Read the votes with categories DataFrame from the CSV file
-votes_with_categories_df = pd.read_csv('dat/votes_with_categories.csv')
-
-# Convert the 'Date' column to datetime format
-votes_with_categories_df['Date'] = pd.to_datetime(votes_with_categories_df['Date'], format='%d.%m.%Y')
-
-# Extract the month and year from the 'Date' column
-votes_with_categories_df['Month'] = votes_with_categories_df['Date'].dt.to_period('M')
-
-# Group by 'Sitzungnr' and sum the categories
-categories = ['Gesundheit', 'Einwanderung', 'Sicherheit', 'Energie', 'Wirtschaft', 'Rechtsreform', 'Außenpolitik', 'Regierungspolitik']
-grouped_df = votes_with_categories_df.groupby(['Sitzungnr'])[categories].sum().reset_index()
-
-# Group by 'Month' and sum the categories
-monthly_df = votes_with_categories_df.groupby(['Month'])[categories].sum().reset_index()
+# Read the preprocessed monthly DataFrame from the CSV file
+monthly_df = pd.read_csv('dat/monthly_df.csv')
 
 # Calculate the percentage of each category for each month
 monthly_df.set_index('Month', inplace=True)
